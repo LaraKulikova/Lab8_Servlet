@@ -78,6 +78,12 @@
     <div class="container">
         <p>2021 Все права защищены</p>
     </div>
+    <div>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="LogoutServlet">Logout</a></li>
+        </ul>
+
+    </div>
 </footer>
 <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
