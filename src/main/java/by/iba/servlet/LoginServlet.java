@@ -1,5 +1,6 @@
 package by.iba.servlet;
 
+import by.iba.model.ListService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,13 +22,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
+
         if (validateUser(name, password)) {
-            request.setAttribute("name", name);
-            request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
+            request.getSession().setAttribute("name", name);
+            request.setAttribute("group", ListService.retrieveList());
+            request.getRequestDispatcher("/WEB-INF/views/welcome.jsp")
+                    .forward(request, response);
         } else {
             request.setAttribute("errorMessage", "Invalid Login and password!!");
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .forward(request, response);
         }
+
     }
 
     public boolean validateUser(String user, String password) {
